@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_prueba_inherit_tree" model="ir.ui.view">
+            <field name="name">Prueba Lista Inherit</field>
+            <field name="model">prueba_prueba</field>
+            <field name="arch" type="xml">
+                <form string="ModelTitle">
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>Cotizacion</h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="partner_ids"/>
+                                <field name="product_ids"/>
+                                <field name="user_ids"/>
+                            </group>
+                            <separate/>
+                            <group>
+                                <field name="description"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="views_inherit_prueba" model="ir.actions.act_window">
+            <field name="name">View Prueba Inherit</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">prueba_prueba</field>
+            <field name="view_mode">form</field>
+        </record>
+
+        <menuitem name="cotizacion" id="cotizacion_prueba" parent="pruebas_base_menu" action="views_inherit_prueba"/>
+
+    </data>
+</odoo>

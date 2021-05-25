@@ -1,0 +1,71 @@
+<odoo>
+    <data>
+        <!-- explicit list view definition -->
+
+        <record model="ir.ui.view" id="prueba_list">
+            <field name="name">prueba list</field>
+            <field name="model">prueba_prueba</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="partner"/>
+                    <field name="product"/>
+                    <field name="user"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- form -->
+        <record id="prueba_form" model="ir.ui.view">
+            <field name="name">prueba form</field>
+            <field name="model">prueba_prueba</field>
+            <field name="arch" type="xml">
+                <form string="TRY">
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>TRY</h1>
+                        </div>
+                        <group>
+                            <field name="partner_ids"/>
+                            <field name="product_ids"/>
+                            <field name="user_ids"/>
+                            <field name="description" string="activities"/>
+                        </group>
+                    </sheet>
+                    <button string="Quotation" type="object" name="action_quotation" class="oe_highlight"/>
+                </form>
+                <div attrs="{'invisible':[('state','!=','confirm')]}">
+                    <div class="oe_title">
+                        <h1 attrs="{'invisible':[('state','!=','confirm')]}">Cotizacion</h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="state" invisible="True"/>
+                            <field name="partner" attrs="{'invisible':[('state','!=','confirm')]}"/>
+                            <field name="product" attrs="{'invisible':[('state','!=','confirm')]}"/>
+                            <field name="user" attrs="{'invisible':[('state','!=','confirm')]}"/>
+                        </group>
+                        <separate/>
+                        <group>
+                            <field name="description" attrs="{'invisible':[('state','!=','draft')]}"/>
+                        </group>
+                    </group>
+                </div>
+            </field>
+        </record>
+
+        <!-- actions opening views on models -->
+
+        <record model="ir.actions.act_window" id="prueba_action_window">
+            <field name="name">prueba window</field>
+            <field name="res_model">prueba_prueba</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Menu -->
+        <menuitem name="Pruebas" id="pruebas_base_menu"/>
+        <menuitem name="Prueba" id="pruebas_menu" parent="pruebas_base_menu" action="prueba_action_window"/>
+
+
+    </data>
+</odoo>
